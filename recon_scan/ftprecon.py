@@ -7,10 +7,10 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
     ftp_scan = "nmap -sV -Pn -vv -p {port} --script=ftp-anon,ftp-bounce,ftp-libopie,ftp-proftpd-backdoor," \
                "ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221 -oN '{save_file_path}/{ip}_ftp.nmap' {ip}". \
         format(port=port, save_file_path=save_file_path,ip=ip_address)
-    results = subprocess.check_output(ftp_scan, shell=True)
+    results = subprocess.call(ftp_scan, shell=True)
     outfile = "{save_file_path}/{ip}_ftprecon.txt".format(ip=ip_address,save_file_path=save_file_path)
     f = open(outfile, "w")
-    f.write(results)
+    f.write(results.decode('utf-8'))
     f.close()
 
     print("INFO: Performing hydra ftp scan against {ip}".format(ip=ip_address))
@@ -20,7 +20,7 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
                                                                                  save_file_path=save_file_path,
                                                                                  ip=ip_address,
                                                                                  port=port)
-    results = subprocess.check_output(hydra, shell=True)
+    results = subprocess.call(hydra, shell=True)
     resultarr = results.split(b'\n')
     for result in resultarr:
         if "login:" in result:
