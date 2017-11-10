@@ -8,7 +8,7 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
                "ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221 -oN '{save_file_path}/{ip}_ftp.nmap' {ip}". \
         format(port=port, save_file_path=save_file_path,ip=ip_address)
     results = subprocess.check_output(ftp_scan, shell=True)
-    outfile = "{save_file_path}/{ip}_ftprecon.txt".format(save_file_path=save_file_path)
+    outfile = "{save_file_path}/{ip}_ftprecon.txt".format(ip=ip_address,save_file_path=save_file_path)
     f = open(outfile, "w")
     f.write(results)
     f.close()
