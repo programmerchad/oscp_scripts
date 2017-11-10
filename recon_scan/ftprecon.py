@@ -3,7 +3,7 @@ import sys
 
 
 def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
-    print("INFO: Performing nmap FTP script scan for {ip}:{port".format(ip=ip_address, port=port))
+    print("INFO: Performing nmap FTP script scan for {ip}:{port}".format(ip=ip_address, port=port))
     ftp_scan = "nmap -sV -Pn -vv -p {port} --script=ftp-anon,ftp-bounce,ftp-libopie,ftp-proftpd-backdoor," \
                "ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221 -oN '{save_file_path}/{ip}_ftp.nmap' {ip}". \
         format(port=port, save_file_path=save_file_path,ip=ip_address)
