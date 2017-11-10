@@ -10,7 +10,9 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
     results = subprocess.call(ftp_scan, shell=True)
     outfile = "{save_file_path}/{ip}_ftprecon.txt".format(ip=ip_address,save_file_path=save_file_path)
     f = open(outfile, "w")
-    f.write(results.decode('utf-8'))
+    if type(results) is not int:
+        results = results.decode('utf-8')
+    f.write(str(results))
     f.close()
 
     print("INFO: Performing hydra ftp scan against {ip}".format(ip=ip_address))
@@ -21,7 +23,7 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
                                                                                  ip=ip_address,
                                                                                  port=port)
     results = subprocess.call(hydra, shell=True)
-    resultarr = results.split(b'\n')
+    resultarr = str(results).split(b'\n')
     for result in resultarr:
         if "login:" in result:
             print("[*] Valid ftp credentials found: {result}".format(result=result))
