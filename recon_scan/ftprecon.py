@@ -28,7 +28,7 @@ def ftp_recon(ip_address, port, save_file_path, username_list, password_list):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 6:
         print("Usage: ftprecon.py <ip address> <port> <save_file_path> <usernames_list> <password_list>")
         sys.exit(0)
     ftp_recon(ip_address=sys.argv[1].strip(), port=sys.argv[2].strip(), save_file_path=sys.argv[3],
