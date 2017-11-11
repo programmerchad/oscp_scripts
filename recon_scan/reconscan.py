@@ -134,11 +134,11 @@ def nmap_scan(ip_address, scan_type, log_dir, fuzzdb_path, usernames, passwords)
     print("INFO: Running general TCP/UDP nmap scans for {ip}".format(ip=ip_address))
     serv_dict = {}
     if scan_type == "FULL":
-        tcp_scan = "nmap -vv -Pn -A -sC -sS -T 4 -p- -oN '{save_file_path}.nmap' " \
-                   "-oX '{save_file_path}/{ip}_nmap_scan_import.xml' {ip}".format(save_file_path=save_file_path,
+        tcp_scan = "nmap -vv -Pn -A -sC -sS -T 4 -p- -oN {save_file_path}/{ip}.nmap " \
+                   "-oX {save_file_path}/{ip}_nmap_scan_import.xml {ip}".format(save_file_path=save_file_path,
                                                                                   ip=ip_address)
-        udp_scan = "nmap -vv -Pn -A -sC -sU -T 4 --top-ports 200 -oN '{save_file_path}U.nmap' " \
-                   "-oX '{save_file_path}/{ip}U_nmap_scan_import.xml' {ip}".format(save_file_path=save_file_path,
+        udp_scan = "nmap -vv -Pn -A -sC -sU -T 4 --top-ports 200 -oN {save_file_path}/{ip}U.nmap " \
+                   "-oX {save_file_path}/{ip}U_nmap_scan_import.xml {ip}".format(save_file_path=save_file_path,
                                                                                    ip=ip_address)
     elif scan_type == "TOP20":
         tcp_scan = "nmap -sT {ip} --top-ports 20 -oN {save_file_path}/{ip}.nmap " \
