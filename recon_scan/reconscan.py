@@ -147,7 +147,7 @@ def nmap_scan(ip_address, scan_type, log_dir, fuzzdb_path, usernames, passwords)
                    "-oX {save_file_path}/{ip}U_nmap_scan_import.xml".format(save_file_path=save_file_path,
                                                                             ip=ip_address)
 
-    results = subprocess.check_output(tcp_scan, shell=True)
+    results = str(subprocess.check_output(tcp_scan, shell=True))
     udp_results = subprocess.check_output(udp_scan, shell=True)
     lines = results.split("\n")
     for line in lines:
